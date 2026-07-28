@@ -4,10 +4,8 @@ source 'https://rubygems.org'
 
 ruby '~> 3.3.12'
 
-# Need the Rails gem. The >= floor keeps us on the 7.2.3.1 security release:
-# without it the resolver prefers minitest 6 (which 7.2.3.1 caps at < 6) and
-# silently settles for Rails 7.2.3.
-gem 'rails', '~> 7.2', '>= 7.2.3.1'
+# Need the Rails gem
+gem 'rails', '~> 8.1', '>= 8.1.3'
 # Use Terser as compressor for JavaScript assets
 gem 'terser', '~> 1.2.8'
 # jquery for easier javascript
@@ -56,7 +54,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rails-controller-testing'
   # Use rspec for lower level unit testing
-  gem 'rspec-rails', '~> 7.1'
+  gem 'rspec-rails', '~> 8.0'
   # Use simplecov for coverage testing
   gem 'byebug'
   gem 'simplecov', '0.21.2', require: false
@@ -74,8 +72,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  # web-console 4.3+ requires railties >= 8.0, so stay on 4.2.x for Rails 7.2
-  gem 'web-console', '~> 4.2'
+  gem 'web-console', '~> 4.3'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

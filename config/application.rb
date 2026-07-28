@@ -12,7 +12,12 @@ Bundler.require(*Rails.groups)
 module SuiteSparseMatrixCollectionWebsite
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.1
+
+    # This app does not use Active Storage (no attachments, no tables), but
+    # rails/all still loads it. Without this, Rails 8.1 logs a warning on every
+    # boot asking for the image_processing gem so it can build variants.
+    config.active_storage.variant_processor = :disabled
 
     # Configuration for the application, engines, and railties goes here.
     #
