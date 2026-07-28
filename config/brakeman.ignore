@@ -1,0 +1,14 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 122,
+      "fingerprint": "98b26f60d776fd41ee6f088c833725145be9aac2d7c5b33780241c273622db42",
+      "check_name": "EOLRails",
+      "message": "Support for Rails 7.2.3.1 ends on 2026-08-09",
+      "file": "Gemfile.lock",
+      "note": "TEMPORARY. Rails 7.2 reaches end of life on 2026-08-09. This entry only keeps `brakeman -z` from failing the build while the app sits on 7.2; it does not make the app supported. Upgrading to Rails 8.1 is the fix - delete this file (and the -i flag in .semaphore/semaphore.yml) once that lands."
+    }
+  ],
+  "brakeman_version": "8.0.5"
+}

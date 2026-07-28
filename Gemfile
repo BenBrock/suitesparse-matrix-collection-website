@@ -2,12 +2,14 @@
 
 source 'https://rubygems.org'
 
-ruby '~> 3.1.2'
+ruby '~> 3.3.12'
 
-# Need the Rails gem
-gem 'rails', '~> 7.0.4'
+# Need the Rails gem. The >= floor keeps us on the 7.2.3.1 security release:
+# without it the resolver prefers minitest 6 (which 7.2.3.1 caps at < 6) and
+# silently settles for Rails 7.2.3.
+gem 'rails', '~> 7.2', '>= 7.2.3.1'
 # Use Terser as compressor for JavaScript assets
-gem 'terser', '~> 1.1.12'
+gem 'terser', '~> 1.2.8'
 # jquery for easier javascript
 gem 'jquery-rails'
 # Rails no longer includes sprockets - we need to include it
@@ -15,29 +17,30 @@ gem 'sprockets-rails'
 # js-cookie for modifying using cookies with JavaScript
 gem 'js_cookie_rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 5.1.0'
+gem 'turbolinks', '~> 5.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # Bootstrap gem for using bootstrap CSS
 gem 'bootstrap'
 # sassc gem for using Sass CSS
 gem 'sassc-rails'
-# Use haml for views
-gem 'haml', '~> 5.0'
-gem 'haml-contrib', '~> 1.0.0.1'
+# Use haml for views. haml-contrib was dropped: none of its filters (maruku,
+# textile, markaby, php, wiki, yajl, builder) are used, and its maruku filter
+# references Tilt::MarukuTemplate, which current Tilt no longer defines.
+gem 'haml', '~> 5.2'
 gem 'haml-rails'
 # Add Font Awesome
 gem 'font_awesome5_rails'
 # Add pagination
-gem 'json', '~> 2.3.0'
-gem 'will_paginate', '~> 3.3.1'
+gem 'json', '~> 2.21'
+gem 'will_paginate', '~> 4.0'
 gem 'will_paginate-bootstrap-style'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # Use reCaptcha to prevent spam
 gem 'recaptcha', require: 'recaptcha/rails'
 # Use Filterrific for AJAX filtering
-gem 'filterrific', '~> 5.2.3'
+gem 'filterrific', '~> 5.2.7'
 # Generate a sitemap
 gem 'sitemap_generator'
 
@@ -47,19 +50,20 @@ group :development, :test do
   # Use Cucumber for BDD testing
   gem 'cucumber-rails', require: false
   # Use Database Cleaner to clear the database between tests
-  gem 'capybara', git: 'https://github.com/teamcapybara/capybara'
+  gem 'capybara', '~> 3.40'
   gem 'database_cleaner'
   gem 'factory_bot'
   gem 'launchy'
   gem 'rails-controller-testing'
   # Use rspec for lower level unit testing
-  gem 'rspec-rails', '~> 6.0.1'
+  gem 'rspec-rails', '~> 7.1'
   # Use simplecov for coverage testing
   gem 'byebug'
   gem 'simplecov', '0.21.2', require: false
-  # Use Selenium for javascript testing
-  gem 'nokogiri', '~> 1.16.5'
-  gem 'webdrivers', '~> 5.2.0'
+  # Use Selenium for javascript testing. Selenium Manager (bundled since 4.11)
+  # downloads the matching driver, so the EOL webdrivers gem is no longer needed.
+  gem 'nokogiri', '~> 1.18'
+  gem 'selenium-webdriver', '~> 4.46'
   # Use brakeman for security checks
   gem 'brakeman', require: false
   # Use rubocop for Ruby style checks
@@ -70,15 +74,14 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 4.1'
+  # web-console 4.3+ requires railties >= 8.0, so stay on 4.2.x for Rails 7.2
+  gem 'web-console', '~> 4.2'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
 group :production, :production_heroku do
-  # Enable better logging and support on Heroku
-  gem 'rails_12factor'
   # Use Mailgun for sending notification emails
   gem 'mailgun_rails'
 end
