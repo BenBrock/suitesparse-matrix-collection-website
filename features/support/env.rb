@@ -59,7 +59,9 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-require 'webdrivers/geckodriver'
+# geckodriver used to be fetched by the webdrivers gem, which is end-of-life.
+# Selenium Manager (bundled with selenium-webdriver >= 4.11) now resolves and
+# downloads the matching driver automatically, so no explicit require is needed.
 
 # Capybara.register_driver :headless_chrome do |app|
 # 	options = Selenium::WebDriver::Chrome::Options.new

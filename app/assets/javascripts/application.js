@@ -14,6 +14,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require filterrific/filterrific-jquery
+//= require filterrific/filterrific
 //= require js.cookie
 //= require_tree .
