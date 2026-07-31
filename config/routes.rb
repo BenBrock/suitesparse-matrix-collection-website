@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/MM/:group/:name.tar.gz',
       to: redirect('http://sparse-files.engr.tamu.edu/MM/%{group}/%{name}.tar.gz', status: 301)
   get '/BSP/:group/:name.bsp.h5',
-      to: redirect('http://sparse-files.engr.tamu.edu/BSP/%{group}/%{name}/%{name}.bsp.h5', status: 301)
+      to: redirect('http://sparse-files.engr.tamu.edu/BSP/%{group}/%{name}.bsp.h5', status: 301)
   get '/svd/:group/:filename.mat',
       to: redirect('http://sparse-files.engr.tamu.edu/svd/%{group}/%{filename}.mat', status: 301)
 
